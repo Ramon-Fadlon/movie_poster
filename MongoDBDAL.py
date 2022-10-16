@@ -1,7 +1,8 @@
 import os
 import pymongo
 import gridfs
-from config import MONGODB_KEY #this file conteins the key - shouldnt be in git, find automation sol for secrets
+from config import TMDB_key
+#this file conteins the key - shouldnt be in git, find automation sol for secrets
 class MongoDBDAL:
     """
     Data Access Layer for mongodb
@@ -72,9 +73,9 @@ if __name__ == "__main__":
     """
     test module
     """
-    mdb = MongoDBDAL("localhost", 27017, "movies")
+    mdb = MongoDBDAL("localhost", 27017, "mydatabase")
 
-    mdb.write_image_file(MONGODB_KEY.content_temp_path + "poster_star wars.jpeg", "spiderman", "tt0145487")
+    mdb.write_image_file("mongodb://localhost:27017/" + "poster_star wars.jpeg", "spiderman", "tt0145487")
     mdb.read_image_file("star wars")
     mdb.update_image_file_meta_data("star wars","imdb_code","no no no no no")
     mdb.del_image_file("spiderman")
